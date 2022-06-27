@@ -16,7 +16,7 @@ class RequestPause
     const MAX_RETRIES = 3;
     protected $logger;
 
-    public function __construct(LoggerInterface $logger)
+    protected function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
     }
