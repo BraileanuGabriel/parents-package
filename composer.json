@@ -2,6 +2,7 @@
     "name": "parents/request-handling",
     "description": "this package is made for handling requests from one module to another whenever one of them is down",
     "type": "library",
+    "license": "MIT",
      "authors": [
         {
             "name": "Braileanu Gabriel",
