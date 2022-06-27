@@ -13,7 +13,7 @@ class RequestPause
     protected $logger;
     protected $client;
 
-    public function __construct(LoggerInterface $logger)
+    protected function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
 
