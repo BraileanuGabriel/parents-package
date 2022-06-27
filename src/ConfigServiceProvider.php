@@ -4,8 +4,6 @@ namespace func\HelloWorld;
 
 use Illuminate\Support\ServiceProvider;
 
-namespace func\HelloWorld;
-
 class ConfigServiceProvider extends ServiceProvider
 {
     /**
