@@ -8,7 +8,7 @@ use GuzzleHttp\Middleware;
 
 class RequestPause
 {
-    protected function createHandlerStack($tries = 5): HandlerStack
+    public function createHandlerStack($tries = 5): HandlerStack
     {
         $stack = HandlerStack::create();
         $stack->push(Middleware::retry(function () use($tries) {return $tries;}, $this->retryDelay()));
