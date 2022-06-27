@@ -49,15 +49,8 @@ class RequestPause
     {
         $config = config('job_pause.pause_job_delay');
         return function ($numberOfRetries) use($config) {
-            switch ($numberOfRetries){
-                case 1: return $config[1]*1000;
-                case 2: return $config[2]*1000;
-                case 3: return $config[3]*1000;
-                case 4: return $config[4]*1000;
-                case 5: return $config[5]*1000;
-                default:
-                    return $config[6]*1000;
-            }
+            info($numberOfRetries.', '.$config[$numberOfRetries]);
+            return $config[$numberOfRetries]*1000 ?? $config[6]*1000;
         };
     }
 }
