@@ -9,9 +9,20 @@
             "email": "gbraileanu15@gmail.com"
         }
     ],
+
     "minimum-stability": "stable",
     "autoload": {
-      "psr-4": {"func\\HelloWorld\\": "src/"}
+        "psr-4": {
+            "func\\HelloWorld\\": "src/"
+        }
     },
-    "require": {}
+    "require": {
+      "illuminate/console": "~5.0",
+      "illuminate/support": "~5.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
+    }
 }

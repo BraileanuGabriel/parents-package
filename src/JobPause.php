@@ -5,11 +5,10 @@ namespace func\HelloWorld;
 use App\Job;
 use Illuminate\Support\Facades\Cache;
 
-class Index
+class JobPause
 {
     public function check($queue = 'default'){
         $attempts = Job::where('queue', $queue)->sum('attempts');
-        info($queue);
         if($attempts){
             $delay = $this->findDelay($attempts);
             $this->pause($queue, $delay);
