@@ -1,0 +1,16 @@
+{
+    "name": "parents/request-handling",
+    "description": "this package is made for handling requests from one module to another whenever one of them is down",
+    "type": "library",
+     "authors": [
+        {
+            "name": "Braileanu Gabriel",
+            "email": "gbraileanu15@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {"func\\HelloWorld\\": "src/"}
+    },
+    "require": {}
+}
