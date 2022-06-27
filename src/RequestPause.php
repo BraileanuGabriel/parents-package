@@ -37,14 +37,19 @@ abstract class RequestPause
         return function (
             $retries,
             Request $request,
-            Response $response = null
+            Response $response = null,
+            RequestException $exception = null
         ) use($tries) {
 
             if ($retries >= $tries) {
                 return false;
             }
 
+            if ($exception instanceof ConnectException) {
+                return true;
+            }
             if ($response) {
+
                 if ($response->getStatusCode() >= 500) {
                     return true;
                 }
