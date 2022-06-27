@@ -10,8 +10,5 @@
         }
     ],
     "minimum-stability": "stable",
-    "autoload": {
-        "psr-4": {"func\\HelloWorld\\": "src/"}
-    },
     "require": {}
 }
