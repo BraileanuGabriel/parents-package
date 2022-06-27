@@ -13,9 +13,9 @@ class RequestPause
     protected $logger;
     protected $client;
 
-    protected function __construct(LoggerInterface $logger)
+    protected function __construct()
     {
-        $this->logger = $logger;
+        $this->logger = LoggerInterface::class;
 
         $this->client = new Client([
             'handler' => $this->createHandlerStack(),
