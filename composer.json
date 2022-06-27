@@ -18,11 +18,10 @@
     },
     "require": {
         "php": "^7.2",
-        "illuminate/support": "6.19.1",
-        "illuminate/console": "6.19.1",
         "guzzlehttp/guzzle": "^7.4",
         "monolog/monolog": "^2.7",
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^8.5",
+        "laravel/framework": "6.19.1"
     },
     "extra": {
         "laravel": {

@@ -2,6 +2,10 @@
 
 namespace func\HelloWorld;
 
+use Illuminate\Queue\Events\JobProcessed;
+use Illuminate\Queue\Events\Looping;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\ServiceProvider;
 
 class ConfigServiceProvider extends ServiceProvider
@@ -15,6 +19,14 @@ class ConfigServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/config/config.php' => config_path('job_pause.php'),
         ]);
+
+        Queue::looping(function (Looping $event) {
+            return !Cache::has('pause_'.$event->queue.'_queue');
+        });
+
+        Queue::after(function (JobProcessed $job){
+            Cache::forget('pause_'.$job->job->getQueue().'_queue');
+        });
     }
 
     /**
