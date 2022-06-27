@@ -53,7 +53,7 @@ class RequestPause
 
     protected function createGuzzleLoggingMiddleware(string $messageFormat): callable
     {
-        return Middleware::log( null,
+        return Middleware::log( $this->logger,
             new MessageFormatter($messageFormat)
         );
     }
