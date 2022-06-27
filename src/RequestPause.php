@@ -2,33 +2,20 @@
 
 namespace func\HelloWorld;
 
-use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Middleware;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
-use Psr\Log\LoggerInterface;
 
 class RequestPause
 {
-    const MAX_RETRIES = 3;
-    protected $logger;
-
-    protected function __construct(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-    }
-
-    protected function createHandlerStack($tries)
+    protected function createHandlerStack($tries): HandlerStack
     {
         $stack = HandlerStack::create();
         $stack->push(Middleware::retry(function () use($tries) {return $tries;}, $this->retryDelay()));
         return $this->createLoggingHandlerStack($stack);
     }
 
-    protected function createLoggingHandlerStack(HandlerStack $stack)
+    protected function createLoggingHandlerStack(HandlerStack $stack): HandlerStack
     {
         $messageFormats = [
             '{method} {uri} HTTP/{version}',
@@ -46,39 +33,13 @@ class RequestPause
         return $stack;
     }
 
-    protected function createGuzzleLoggingMiddleware(string $messageFormat)
+    protected function createGuzzleLoggingMiddleware(string $messageFormat): callable
     {
-        return Middleware::log(
-            $this->logger,
+        return Middleware::log( null,
             new MessageFormatter($messageFormat)
         );
     }
-
-    protected function retryDecider()
-    {
-        return function (
-            $retries,
-            Request $request,
-            Response $response = null,
-            RequestException $exception = null
-        ) {
-            // Limit the number of retries to MAX_RETRIES
-            if ($retries >= self::MAX_RETRIES) {
-                return false;
-            }
-            // Retry connection exceptions
-            if ($exception instanceof ConnectException) {
-                return true;
-            }
-            if ($response) {
-                // Retry on server errors
-                if ($response->getStatusCode() >= 500) {
-                    return true;
-                }
-            }
-            return false;
-        };
-    }
+    
     /**
      * delay 1s 2s 3s 4s 5s ...
      *
@@ -89,12 +50,13 @@ class RequestPause
         $config = config('job_pause.pause_job_delay');
         return function ($numberOfRetries) use($config) {
             switch ($numberOfRetries){
-                case 1: return $config[1];
-                case 2: return $config[2];
-                case 3: return $config[3];
-                case 4: return $config[4];
-                case 5: return $config[5];
-                case $numberOfRetries>5: return $config[6];
+                case 1: return $config[1]*1000;
+                case 2: return $config[2]*1000;
+                case 3: return $config[3]*1000;
+                case 4: return $config[4]*1000;
+                case 5: return $config[5]*1000;
+                default:
+                    return $config[6]*1000;
             }
         };
     }
