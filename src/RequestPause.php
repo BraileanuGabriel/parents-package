@@ -3,10 +3,12 @@
 namespace func\HelloWorld;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\HandlerStack;
-use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Middleware;
-use Psr\Log\LoggerInterface;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 
 abstract class RequestPause
 {
@@ -26,8 +28,29 @@ abstract class RequestPause
     public function createHandlerStack($tries = 5): HandlerStack
     {
         $stack = HandlerStack::create();
-        $stack->push(Middleware::retry(function () use($tries) {return $tries;}, $this->retryDelay()));
+        $stack->push(Middleware::retry($this->retryDecider($tries), $this->retryDelay()));
         return $stack;
+    }
+
+    protected function retryDecider($tries)
+    {
+        return function (
+            $retries,
+            Request $request,
+            Response $response = null
+        ) use($tries) {
+
+            if ($retries >= $tries) {
+                return false;
+            }
+
+            if ($response) {
+                if ($response->getStatusCode() >= 500) {
+                    return true;
+                }
+            }
+            return false;
+        };
     }
 
     /**
