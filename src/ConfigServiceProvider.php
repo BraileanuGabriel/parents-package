@@ -15,8 +15,8 @@ class ConfigServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/config/config.php' => config_path('awesome.php'),
-        ], 'awesome_config');
+            __DIR__.'/config/config.php' => config_path('job_pause.php'),
+        ]);
     }
 
     /**
@@ -27,7 +27,7 @@ class ConfigServiceProvider extends ServiceProvider
     {
         // Merge configuration
         $this->mergeConfigFrom(
-            __DIR__.'/config/config.php', 'awesome'
+            __DIR__.'/config/config.php', 'job_pause'
         );
 
     }
