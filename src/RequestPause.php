@@ -8,14 +8,14 @@ use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Middleware;
 use Psr\Log\LoggerInterface;
 
-class RequestPause
+abstract class RequestPause
 {
     protected $logger;
     protected $client;
 
-    protected function __construct()
+    protected function __construct(LoggerInterface $logger)
     {
-        $this->logger = LoggerInterface::class;
+        $this->logger = $logger;
 
         $this->client = new Client([
             'handler' => $this->createHandlerStack(),
