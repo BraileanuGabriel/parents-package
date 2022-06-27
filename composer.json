@@ -17,7 +17,8 @@
         }
     },
     "require": {
-        "illuminate/support": "^9.18",
-        "illuminate/console": "^9.18"
+        "php": "^7.2",
+        "illuminate/support": "6.19.1",
+        "illuminate/console": "6.19.1"
     }
 }
