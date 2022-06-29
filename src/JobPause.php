@@ -10,8 +10,7 @@ class JobPause
     public function check($thisJob, $queue = 'default'){
         if($thisJob->attempts() == 0) return;
 
-        if($thisJob->attempts() != 0 && !cache()->get('pause_'.$queue.'_queue')){
-            info('here');
+        if($thisJob->attempts() != 0 && Cache::has('operate')){
             return;
         }
 
@@ -28,5 +27,6 @@ class JobPause
 
     public function pause($queue, $delay){
         Cache::put('pause_'.$queue.'_queue', $delay, $delay);
+        Cache::forever('operate', true);
     }
 }
