@@ -3,7 +3,7 @@
 namespace func\HelloWorld\Observers;
 
 use App\Job;
-use Illuminate\Filesystem\Cache;
+use Illuminate\Support\Facades\Cache;
 
 class JobObserver
 {
