@@ -11,6 +11,7 @@ class JobPause
         if($thisJob->attempts() == 0) return;
 
         if($thisJob->attempts() != 0 && !cache()->get('pause_'.$queue.'_queue')){
+            info('here');
             return;
         }
 
