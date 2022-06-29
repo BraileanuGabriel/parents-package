@@ -1,6 +1,6 @@
 <?php
 
-namespace func\HelloWorld;
+namespace Parents\RequestPause;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;

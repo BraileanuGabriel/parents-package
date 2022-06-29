@@ -1,6 +1,6 @@
 <?php
 
-namespace func\HelloWorld;
+namespace Parents\RequestPause\Providers;
 
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Queue\Events\Looping;
@@ -17,16 +17,8 @@ class ConfigServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/config/config.php' => config_path('job_pause.php'),
+            __DIR__ . '/config/config.php' => config_path('job_pause.php'),
         ]);
-
-        Queue::looping(function (Looping $event) {
-            return !Cache::has('pause_'.$event->queue.'_queue');
-        });
-
-        Queue::after(function (JobProcessed $job){
-            Cache::forget('pause_'.$job->job->getQueue().'_queue');
-        });
     }
 
     /**
@@ -37,7 +29,7 @@ class ConfigServiceProvider extends ServiceProvider
     {
         // Merge configuration
         $this->mergeConfigFrom(
-            __DIR__.'/config/config.php', 'job_pause'
+            __DIR__ . '/config/config.php', 'job_pause'
         );
 
     }

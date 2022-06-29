@@ -1,6 +1,6 @@
 <?php
 
-namespace func\HelloWorld\Observers;
+namespace Parents\RequestPause\Observers;
 
 use App\Job;
 use Illuminate\Support\Facades\Cache;
@@ -15,7 +15,6 @@ class JobObserver
      */
     public function deleted(Job $job)
     {
-        info('here');
         Cache::forget('pause_'.$job->queue.'_queue');
     }
 }

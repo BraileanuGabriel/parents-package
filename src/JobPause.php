@@ -1,6 +1,6 @@
 <?php
 
-namespace func\HelloWorld;
+namespace Parents\RequestPause;
 
 use App\Job;
 use Illuminate\Support\Facades\Cache;
