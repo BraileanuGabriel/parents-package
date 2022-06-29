@@ -2,10 +2,6 @@
 
 namespace Parents\RequestPause\Providers;
 
-use Illuminate\Queue\Events\JobProcessed;
-use Illuminate\Queue\Events\Looping;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\ServiceProvider;
 
 class ConfigServiceProvider extends ServiceProvider

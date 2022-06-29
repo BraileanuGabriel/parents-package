@@ -22,8 +22,6 @@ class JobPause
     }
 
     public function pause($queue, $delay){
-        info($queue.' '.$delay);
         Cache::put('pause_'.$queue.'_queue', $delay, $delay);
-        info(Cache::get('pause_'.$queue.'_queue'));
     }
 }
