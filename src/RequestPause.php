@@ -14,6 +14,8 @@ abstract class RequestPause
 {
     protected $client;
 
+    public $tries = 5;
+
     public function __construct()
     {
         $this->client = new Client([
@@ -28,20 +30,20 @@ abstract class RequestPause
     public function createHandlerStack($tries = 5): HandlerStack
     {
         $stack = HandlerStack::create();
-        $stack->push(Middleware::retry($this->retryDecider($tries), $this->retryDelay()));
+        $stack->push(Middleware::retry($this->retryDecider(), $this->retryDelay()));
         return $stack;
     }
 
-    protected function retryDecider($tries)
+    protected function retryDecider()
     {
         return function (
             $retries,
             Request $request,
             Response $response = null,
             RequestException $exception = null
-        ) use($tries) {
+        ) {
 
-            if ($retries >= $tries) {
+            if ($retries >= $this->tries) {
                 return false;
             }
 
@@ -65,7 +67,6 @@ abstract class RequestPause
     {
         $config = config('job_pause.pause_job_delay');
         return function ($numberOfRetries) use($config) {
-            info($numberOfRetries.', '.$config[$numberOfRetries]);
             return $config[$numberOfRetries]*1000 ?? $config[6]*1000;
         };
     }
