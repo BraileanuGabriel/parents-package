@@ -19,7 +19,7 @@
     "require": {
         "php": "^7.2 || 8.1.*",
         "guzzlehttp/guzzle": "^7.4",
-        "monolog/monolog": ">=2.7",
+        "monolog/monolog": "<=2.7",
         "phpunit/phpunit": "^8.5 || 9.*",
         "laravel/framework": "6.19.1 || 9.*"
     },
