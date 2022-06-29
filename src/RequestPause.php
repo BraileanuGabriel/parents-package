@@ -67,7 +67,6 @@ abstract class RequestPause
     {
         $config = config('job_pause.pause_job_delay');
         return function ($numberOfRetries) use($config) {
-            info($numberOfRetries.' and '.$config[$numberOfRetries]);
             return $config[$numberOfRetries]*1000 ?? $config[6]*1000;
         };
     }
