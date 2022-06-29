@@ -2,14 +2,14 @@
 
 namespace Parents\RequestPause;
 
-use App\Job;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class JobPause
 {
     public function check($thisJob, $queue = 'default'){
         if($thisJob->attempts() == 0) return;
-        $attempts = Job::where('queue', $queue)->sum('attempts');
+        $attempts = DB::table('jobs')->where('queue', $queue)->sum('attempts');
         if($attempts){
             $delay = $this->findDelay($attempts);
             $this->pause($queue, $delay);
