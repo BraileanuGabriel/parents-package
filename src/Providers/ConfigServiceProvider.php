@@ -27,6 +27,6 @@ class ConfigServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__ . '/../config/config.php', 'job_pause'
         );
-
+        dd(config('job_pause.pause_job_delay'));
     }
 }
