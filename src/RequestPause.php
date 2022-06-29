@@ -40,7 +40,7 @@ abstract class RequestPause
             $retries,
             Request $request,
             Response $response = null,
-            RequestException $exception = null
+            ConnectException $exception = null
         ) {
 
             if ($retries >= $this->tries) {
