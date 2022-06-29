@@ -9,11 +9,8 @@ class JobPause
 {
     public function check($thisJob, $queue = 'default'){
         if($thisJob->attempts() == 0) return;
-        info("here");
         $attempts = Job::where('queue', $queue)->sum('attempts');
-        info(Job::all());
         if($attempts){
-            info($attempts);
             $delay = $this->findDelay($attempts);
             $this->pause($queue, $delay);
         }

@@ -17,7 +17,7 @@ class ConfigServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config/config.php' => config_path('job_pause.php'),
+            __DIR__ . '../config/config.php' => config_path('job_pause.php'),
         ]);
     }
 
@@ -29,7 +29,7 @@ class ConfigServiceProvider extends ServiceProvider
     {
         // Merge configuration
         $this->mergeConfigFrom(
-            __DIR__ . '/config/config.php', 'job_pause'
+            __DIR__ . '../config/config.php', 'job_pause'
         );
 
     }
