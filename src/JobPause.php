@@ -7,13 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class JobPause
 {
-    public function check($thisJob, $queue = 'default'){
-        if($thisJob->attempts() == 0) return;
-
-        if($thisJob->attempts() != 0 && Cache::has('operate')){
-            return;
-        }
-
+    public function check($queue = 'default'){
         if($attempts = DB::table('jobs')->where('queue', $queue)->sum('attempts')){
             $delay = $this->findDelay($attempts);
             $this->pause($queue, $delay);
@@ -27,6 +21,5 @@ class JobPause
 
     public function pause($queue, $delay){
         Cache::put('pause_'.$queue.'_queue', $delay, $delay);
-        Cache::forever('operate', true);
     }
 }

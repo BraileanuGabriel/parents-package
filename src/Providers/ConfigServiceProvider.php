@@ -14,7 +14,7 @@ class ConfigServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../config/config.php' => config_path('job_pause.php'),
-        ]);
+        ], 'config');
     }
 
     /**
