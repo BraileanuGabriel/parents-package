@@ -17,7 +17,6 @@ class QueueServiceProvider extends ServiceProvider
     public function boot()
     {
         Queue::looping(function (Looping $event) {
-            info(Cache::has('pause_'.$event->queue.'_queue'));
             return !Cache::has('pause_'.$event->queue.'_queue');
         });
 
