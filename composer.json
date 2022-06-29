@@ -26,7 +26,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Parents\\RequestPause\\Providers\\ConfigServiceProvider"
+                "Parents\\RequestPause\\Providers\\ConfigServiceProvider",
+                "Parents\\RequestPause\\Providers\\QueueServiceProvider"
             ]
         }
     }
