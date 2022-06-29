@@ -15,6 +15,7 @@ class JobObserver
      */
     public function deleted(Job $job)
     {
+        info('here');
         Cache::forget('pause_'.$job->queue.'_queue');
     }
 }
