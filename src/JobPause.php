@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Cache;
 
 class JobPause
 {
-    public function check($queue = 'default'){
+    public function check($thisJob, $queue = 'default'){
+        if($thisJob->attempts() == 0) return;
+
         $attempts = Job::where('queue', $queue)->sum('attempts');
         if($attempts){
             $delay = $this->findDelay($attempts);
