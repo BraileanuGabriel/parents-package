@@ -35,13 +35,13 @@ class ClearPauseKeysCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return bool
+     * @return void
      */
-    public function handle(): bool
+    public function handle()
     {
-        dd(DB::table('jobs')->pluck('queue'));
-        foreach (array_unique() as $queue){
-            Cache::forget('pause_'.$queue.'_queue');
+        foreach (DB::table('failed_jobs')->groupBy("queue")->pluck('queue') as $queue){
+            info("$queue");
         }
     }
+
 }
