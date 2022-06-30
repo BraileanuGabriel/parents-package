@@ -11,21 +11,19 @@ class JobPause
         if($attempts = DB::table('jobs')->where('queue', $queue)->sum('attempts')){
             info('======= '.$attempts.' ======');
             $delay = $this->findDelay($attempts);
+            info("delay : ".$delay);
             $this->pause($queue, $delay);
         }
     }
 
     public function findDelay($attempts){
         $config = config('job_pause.pause_job_delay');
-        info($config);
-        info($config[$attempts]);
         return $config[$attempts] ?? $config[6];
     }
 
     public function pause($queue, $delay){
         Cache::tags(['pause_keys'])->put('pause_'.$queue.'_queue', $delay, $delay);
-        info($queue);
-        info(Cache::get('pause_'.$queue.'_queue'));
+        info('key : '.Cache::get('pause_'.$queue.'_queue'));
         info('================');
     }
 }
