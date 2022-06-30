@@ -39,7 +39,7 @@ class ClearPauseKeysCommand extends Command
      */
     public function handle()
     {
-        foreach (DB::table('failed_jobs')->groupBy("queue")->pluck('queue') as $queue){
+        foreach (DB::table('jobs')->groupBy("queue")->pluck('queue') as $queue){
             Cache::forget("pause_".$queue."_queue");
         }
     }
