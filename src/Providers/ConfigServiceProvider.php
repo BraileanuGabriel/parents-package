@@ -2,6 +2,8 @@
 
 namespace Parents\RequestPause\Providers;
 
+use Parents\RequestPause\ServiceProvider\BaseProvider;
+
 class ConfigServiceProvider extends BaseProvider
 {
     /**

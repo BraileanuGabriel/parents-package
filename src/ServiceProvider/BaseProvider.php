@@ -1,17 +1,18 @@
 <?php
 
-namespace Parents\RequestPause\Providers;
+namespace Parents\RequestPause\ServiceProvider;
 
 use Illuminate\Console\Application as Artisan;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Database\Eloquent\Factory as ModelFactory;
+use function collect;
 
 abstract class BaseProvider
 {
     /**
      * The application instance.
      *
-     * @var \Illuminate\Contracts\Foundation\Application
+     * @var ApplicationInterface
      */
     protected $app;
 
@@ -32,7 +33,7 @@ abstract class BaseProvider
     /**
      * Create a new service provider instance.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @param  ApplicationInterface  $app
      * @return void
      */
     public function __construct($app)
