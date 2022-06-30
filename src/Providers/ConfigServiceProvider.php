@@ -2,9 +2,7 @@
 
 namespace Parents\RequestPause\Providers;
 
-use Illuminate\Support\ServiceProvider;
-
-class ConfigServiceProvider extends ServiceProvider
+class ConfigServiceProvider extends BaseProvider
 {
     /**
      * Bootstrap the application services.
