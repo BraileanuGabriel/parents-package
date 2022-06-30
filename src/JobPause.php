@@ -22,7 +22,7 @@ class JobPause
     }
 
     public function pause($queue, $delay){
-        Cache::tags(['pause_keys'])->put('pause_'.$queue.'_queue', $delay, $delay);
+        Cache::put('pause_'.$queue.'_queue', $delay, $delay);
         info('key : '.Cache::get('pause_'.$queue.'_queue'));
         info('================');
     }
