@@ -2,7 +2,6 @@
 
 namespace Parents\RequestPause\Observers;
 
-use App\Job;
 use Illuminate\Support\Facades\Cache;
 
 class JobObserver
@@ -10,8 +9,8 @@ class JobObserver
     /**
      * @return void
      */
-    public function deleted(Job $job)
+    public function deleted()
     {
-        Cache::forget('pause_'.$job->queue.'_queue');
+        Cache::tags(['pause_keys'])->flush();
     }
 }
