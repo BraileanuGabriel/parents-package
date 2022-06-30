@@ -11,20 +11,7 @@ use GuzzleHttp\Psr7\Response;
 
 abstract class RequestPause
 {
-    protected $client;
-
     public $tries = 5;
-
-    public function __construct()
-    {
-        $this->client = new Client([
-            'handler' => $this->createHandlerStack(),
-            'headers' => [
-                'Accept' => 'application/json',
-            ],
-            'verify' => !config('services.w_parents.env')
-        ]);
-    }
 
     public function createHandlerStack($tries = 5): HandlerStack
     {

@@ -4,7 +4,6 @@ namespace Parents\RequestPause\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
 
 class ClearPauseKeysCommand extends Command
 {
@@ -13,7 +12,7 @@ class ClearPauseKeysCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:clear-pause-keys';
+    protected $signature = 'command:clear-pause-keys {key?}';
 
     /**
      * The console command description.
@@ -21,6 +20,10 @@ class ClearPauseKeysCommand extends Command
      * @var string
      */
     protected $description = 'Clear keys for pausing jobs';
+
+    protected $queues = [
+        'default', 'email', 'webinar', 'webhook', 'parents'
+    ];
 
     /**
      * Create a new command instance.
@@ -39,7 +42,12 @@ class ClearPauseKeysCommand extends Command
      */
     public function handle()
     {
-        foreach (DB::table('jobs')->groupBy("queue")->pluck('queue') as $queue){
+        if($queue = $this->argument('key')){
+            Cache::forget("pause_".$queue."_queue");
+            return;
+        }
+
+        foreach ($this->queues as $queue){
             Cache::forget("pause_".$queue."_queue");
         }
     }
