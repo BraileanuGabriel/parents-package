@@ -12,6 +12,7 @@ class JobPause
             $delay = $this->findDelay($attempts);
             $this->pause($queue, $delay);
         }
+        info('======= '.$attempts.' ======');
     }
 
     public function findDelay($attempts){
@@ -21,5 +22,9 @@ class JobPause
 
     public function pause($queue, $delay){
         Cache::tags(['pause_keys'])->put('pause_'.$queue.'_queue', $delay, $delay);
+        info($delay);
+        info($queue);
+        info(Cache::get('pause_'.$queue.'_queue'));
+        info('================');
     }
 }
