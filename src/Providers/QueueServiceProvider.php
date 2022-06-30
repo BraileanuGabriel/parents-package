@@ -6,9 +6,9 @@ use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Queue\Events\Looping;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Queue;
-use Illuminate\Support\ServiceProvider;
+use Parents\RequestPause\ServiceProvider\BaseProvider;
 
-class QueueServiceProvider extends ServiceProvider
+class QueueServiceProvider extends BaseProvider
 {
     /**
      * Bootstrap the application services.
