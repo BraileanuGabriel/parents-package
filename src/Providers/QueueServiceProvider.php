@@ -20,8 +20,8 @@ class QueueServiceProvider extends ServiceProvider
             return !Cache::has('pause_'.$event->queue.'_queue');
         });
 
-        Queue::after(function (){
-            Cache::tags(['pause_keys'])->flush();
+        Queue::after(function (JobProcessed $job){
+            Cache::forget('pause_'.$job->job->getQueue().'_queue');
         });
     }
 }
