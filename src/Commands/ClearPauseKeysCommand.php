@@ -39,7 +39,8 @@ class ClearPauseKeysCommand extends Command
      */
     public function handle(): bool
     {
-        foreach (array_unique((array)DB::table('jobs')->pluck('queue')) as $queue){
+        dd(DB::table('jobs')->pluck('queue'));
+        foreach (array_unique() as $queue){
             Cache::forget('pause_'.$queue.'_queue');
         }
     }
