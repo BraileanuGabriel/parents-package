@@ -22,7 +22,6 @@ class QueueServiceProvider extends ServiceProvider
 
         Queue::after(function (JobProcessed $job){
             Cache::forget('pause_'.$job->job->getQueue().'_queue');
-            Cache::tags('pause_keys')->flush();
         });
     }
 }

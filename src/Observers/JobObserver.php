@@ -13,7 +13,6 @@ class JobObserver
      */
     public function deleted(Job $job)
     {
-//        Cache::forget('pause_'.$job->queue.'_queue');
-        Cache::tags('pause_keys')->flush();
+        Cache::forget('pause_'.$job->queue.'_queue');
     }
 }
