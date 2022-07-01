@@ -2,7 +2,6 @@
 
 namespace Parents\RequestPause;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;

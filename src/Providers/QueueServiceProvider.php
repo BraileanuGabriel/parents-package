@@ -2,6 +2,7 @@
 
 namespace Parents\RequestPause\Providers;
 
+use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Queue\Events\Looping;
 use Illuminate\Support\Facades\Cache;
@@ -21,6 +22,10 @@ class QueueServiceProvider extends ServiceProvider
         });
 
         Queue::after(function (JobProcessed $job){
+            Cache::forget('pause_'.$job->job->getQueue().'_queue');
+        });
+
+        Queue::failing(function (JobFailed $job){
             Cache::forget('pause_'.$job->job->getQueue().'_queue');
         });
     }
