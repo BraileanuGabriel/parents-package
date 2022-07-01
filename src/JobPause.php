@@ -16,7 +16,7 @@ class JobPause
 
     public function findDelay($attempts){
         $config = config('job_pause.pause_job_delay');
-        return $config[$attempts] ?? $config[6];
+        return $config[$attempts] ?? end($config);
     }
 
     public function pause($queue, $delay){
