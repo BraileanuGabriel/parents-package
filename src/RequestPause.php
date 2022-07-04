@@ -37,7 +37,10 @@ abstract class RequestPause
             }
             if ($response) {
 
-                if ($response->getStatusCode() >= 500) {
+                if (
+                    $response->getStatusCode() >= config('job_pause.request_status.from') &&
+                    $response->getStatusCode() <= config('job_pause.request_status.to')
+                ){
                     return true;
                 }
             }

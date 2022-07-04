@@ -21,10 +21,6 @@ class ClearPauseKeysCommand extends Command
      */
     protected $description = 'Clear keys for pausing jobs';
 
-    protected $queues = [
-        'default', 'email', 'webinar', 'webhook', 'parents'
-    ];
-
     /**
      * Create a new command instance.
      *
@@ -47,7 +43,7 @@ class ClearPauseKeysCommand extends Command
             return;
         }
 
-        foreach ($this->queues as $queue){
+        foreach (config('job_pause.queues') as $queue){
             Cache::forget("pause_".$queue."_queue");
         }
     }

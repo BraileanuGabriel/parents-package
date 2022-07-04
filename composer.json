@@ -1,5 +1,5 @@
 {
-    "name": "parents/request-handling",
+    "name": "ebs/pause-handler",
     "description": "this package is made for handling requests from one module to another whenever one of them is down",
     "type": "library",
     "license": "MIT",

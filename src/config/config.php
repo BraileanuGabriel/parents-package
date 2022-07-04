@@ -20,4 +20,13 @@ return [
         5 => 30,
     ],
 
+    'queues' => [
+        'default', 'email', 'webinar', 'webhook', 'parents'
+    ],
+
+    'request_status' => [
+        'from' => 500,
+        'to' => 600
+    ]
+
 ];
