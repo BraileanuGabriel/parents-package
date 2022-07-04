@@ -12,7 +12,7 @@ abstract class RequestPause
 {
     public $tries = 5;
 
-    public function createHandlerStack($tries = 5): HandlerStack
+    public function createHandlerStack(): HandlerStack
     {
         $stack = HandlerStack::create();
         $stack->push(Middleware::retry($this->retryDecider(), $this->retryDelay()));
@@ -50,7 +50,7 @@ abstract class RequestPause
      */
     protected function retryDelay()
     {
-        $config = config('job_pause.pause_job_delay');
+        $config = config('job_pause.pause_request_delay');
         return function ($numberOfRetries) use($config) {
             return $config[$numberOfRetries]*1000 ?? $config[6]*1000;
         };
