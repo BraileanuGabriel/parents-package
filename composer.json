@@ -1,5 +1,5 @@
 {
-    "name": "ebs/pause-handler",
+    "name": "ebs/webhook-requests-handler",
     "description": "this package is made for handling requests from one module to another whenever one of them is down",
     "type": "library",
     "license": "MIT",
@@ -13,7 +13,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Parents\\RequestPause\\": "src/"
+            "EBS\\Handlers\\": "src/"
         }
     },
     "require": {
@@ -26,8 +26,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Parents\\RequestPause\\Providers\\ConfigServiceProvider",
-                "Parents\\RequestPause\\Providers\\QueueServiceProvider"
+                "EBS\\Handlers\\Providers\\ConfigServiceProvider",
+                "EBS\\Handlers\\Providers\\QueueServiceProvider"
             ]
         }
     }

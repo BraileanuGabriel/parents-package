@@ -1,6 +1,6 @@
 <?php
 
-namespace Parents\RequestPause;
+namespace EBS\Handlers;
 
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\HandlerStack;

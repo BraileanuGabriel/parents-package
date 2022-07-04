@@ -1,6 +1,6 @@
 <?php
 
-namespace Parents\RequestPause\Providers;
+namespace EBS\Handlers\Providers;
 
 use Illuminate\Queue\Events\JobFailed;
 use Illuminate\Queue\Events\JobProcessed;

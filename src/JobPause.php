@@ -1,6 +1,6 @@
 <?php
 
-namespace Parents\RequestPause;
+namespace EBS\Handlers;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;

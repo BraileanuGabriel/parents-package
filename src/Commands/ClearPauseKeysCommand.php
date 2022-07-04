@@ -1,6 +1,6 @@
 <?php
 
-namespace Parents\RequestPause\Commands;
+namespace EBS\Handlers\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
